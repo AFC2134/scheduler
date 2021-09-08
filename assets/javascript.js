@@ -223,11 +223,27 @@ pageContentEl.addEventListener("click", taskButtonHandler);
 
 var saveTasks = function() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
-}
+};
+
+var loadTasks = function() {
+  localStorage.getItem("tasks");
+  if (!savedTasks) {
+    return false;
+  }
+  console.log("saved tasks not found!");
+
+  savedTasks = JSON.parse(savedTasks);
+
+  for (var i = 0; i < tasks.length; i++) {
+    createTaskEl(savedTasks[i]);
+  }
+};
+
+
 
 formEl.addEventListener("submit", taskFormHandler);
 
-
+loadTasks();
 
 
 
